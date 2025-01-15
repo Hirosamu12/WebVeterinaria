@@ -1,16 +1,17 @@
 <?php
 
+use PhpParser\Node\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use PhpParser\Node\Name;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function(){
     return view('/login');
 });
 
-Route::post('/register', [UserController::class,'register']);
+Route::post('/register', [RegisterController::class,'register']);
 
 Route::post('/logout', [UserController::class,'logout']);
 

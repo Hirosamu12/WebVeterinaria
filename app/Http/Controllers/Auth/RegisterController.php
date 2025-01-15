@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -75,5 +77,24 @@ class RegisterController extends Controller
             'id_Rol' => 3,
             'estado'=> 'Activo',
         ]);
+    }
+
+    public function register(Request $request){
+
+        $incomingfields = $request->validate([
+            'nombre_Usuario' => 'required',
+            'apellido_Usuario' => 'required',
+            'cedula' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'email' => ['required', 'email', Rule::unique('usuario', 'email')],
+            'password' => ['required','min:8','max:200'],
+        ]);
+        $incomingfields['id_Rol'] = 3;
+        $incomingfields['estado'] = "activo";
+        $incomingfields['password'] = bcrypt($incomingfields['password']);
+        $user = User::create($incomingfields);
+        auth()->login($user);
+        return redirect('/user');
     }
 }
