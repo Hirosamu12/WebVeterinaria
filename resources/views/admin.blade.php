@@ -1,1 +1,1 @@
-@extends('adminlte::auth.page')
+@extends('adminlte::page')

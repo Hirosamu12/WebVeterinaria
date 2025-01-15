@@ -25,7 +25,7 @@ class UserController extends Controller
         $incomingfields['password'] = bcrypt($incomingfields['password']);
         $user = User::create($incomingfields);
         auth()->login($user);
-        return redirect('/home/user');
+        return view('user');
     }
 
     public function logout(){
@@ -49,15 +49,15 @@ class UserController extends Controller
             */
             // si es admin muestra esto
             if ($user->id_Rol == 1) {
-                return redirect()->route('home/admin');
+                return view('admin');
             } 
             // si es veterinario muestra esto
             else if($user->id_Rol == 2){
-                return redirect()->route('home/vet');
+                return view('vet');
             } 
             // si es usuario comun muestra esto
             else{
-                return redirect()->route('home/user');
+                return view('user');
             }
         }
         
