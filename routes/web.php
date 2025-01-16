@@ -13,23 +13,18 @@ Route::get('/', function(){
 
 Route::post('/register', [RegisterController::class,'register']);
 
-Route::post('/logout', [UserController::class,'logout']);
+Route::post('/logout', [LoginController::class,'logout']);
 
 Route::post('/login', [LoginController::class,'login']);
 
 Auth::routes();
 
 
-Route::get('/admin', function(){
-    return view('admin');
-})->name('admin');
-
-Route::get('/vet', function(){
-    return view('vet') ;
-})->name('vet');
-
-Route::get('/user', function(){
-    return view('user') ;
-})->name('user');
+Route::get('/home', function(){
+    return view('home');
+})->name('home');
 
 
+Route::get('/administrarUsuarios', function(){
+    return view('adminUsers') ;
+})->name('adminUsers');

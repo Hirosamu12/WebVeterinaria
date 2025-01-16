@@ -48,19 +48,7 @@ class LoginController extends Controller
          if (Auth::attempt($request->only('email', 'password'))) {
              $request->session()->regenerate();
              $user = Auth::user();
- 
-             // Redirect based on the user's role
-             switch ($user->id_Rol) {
-                 case 1: // Admin
-                     return redirect()->route('admin');
-                 case 2: // Veterinarian
-                     return redirect()->route('vet');
-                 case 3: // Regular User
-                     return redirect()->route('user');
-                 default: // Unknown role
-                     Auth::logout();
-                     return redirect()->route('login')->withErrors(['role' => 'Invalid role']);
-             }
+             return redirect()->route('home');
          }
  
          // Login failed
@@ -68,6 +56,11 @@ class LoginController extends Controller
              'email' => 'Invalid credentials.',
          ]);
      }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('/login');
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

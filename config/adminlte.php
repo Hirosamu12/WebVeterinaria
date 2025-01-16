@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Veterinaria',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Veterinaria</b>',
+    'logo_img' => 'images/LogoSangre.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Logo Sangre',
 
     /*
     |--------------------------------------------------------------------------
@@ -299,20 +299,55 @@ return [
     */
     
     'menu' => [
-    'MAIN NAVIGATION',
+    // Menu Administrador
     [
-        'text' => 'Blog',
-        'url' => 'admin/blog',
+        'text'  => 'Usuarios',
+        'url'   => 'administrarUsuarios',
+        'icon'  => 'fas fa-solid fa-user',
+        'can'   => 'manage-users',
+    ],
+
+
+    // Menu Veterinario
+    [
+        'text'  => 'Mascotas',
+        'url'   => 'mascotas',
+        'icon'  => 'fas fa-solid fa-paw',
+        'can'   => 'manage-pets',
     ],
     [
-        'text' => 'Pages',
-        'url' => 'admin/pages',
-        'icon' => 'fas fa-fw fa-file',
+        'text'  => 'Donaciones',
+        'url'   => 'donaciones',
+        'can'   => 'manage-pets',
+        'icon'=> 'fas fa-solod fa-notes-medical',
     ],
     [
-        'text' => 'Show my website',
-        'url' => '/',
-        'target' => '_blank',
+        'text'  => 'Propietarios',
+        'url'   => 'propietarios',
+        'can'   => 'manage-pets',
+        'icon'  => 'fas fa-solid fa-user',
+    ],
+    [
+        'text'  => 'Historial',
+        'url'   => 'historial',
+        'can'   => 'manage-pets',
+        'icon'  => 'fas fa-solid fa-file-medical',
+    ],
+    [
+        'text'  => 'Buscar Donante',
+        'url'   => 'donantes',
+        'can'   => 'manage-pets',
+        'icon'  => 'fas fa-solid fa-binoculars',
+    ],
+
+
+
+    //Menu Usuario
+    [
+        'text'  => 'Mis mascotas',
+        'url'   => 'mypets',
+        'icon'  => 'fas fa-solid fa-paw',
+        'can'   => 'see-pets',
     ],
     
 ],

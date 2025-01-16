@@ -95,6 +95,6 @@ class RegisterController extends Controller
         $incomingfields['password'] = bcrypt($incomingfields['password']);
         $user = User::create($incomingfields);
         auth()->login($user);
-        return redirect('/user');
+        return redirect('/home');
     }
 }
