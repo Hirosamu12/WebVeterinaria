@@ -299,13 +299,6 @@ return [
     */
     
 
-    'user-panel' =>[
-        [
-            'user-panel',
-            'url'  => '#',
-            'icon' => 'fas fa-user',
-        ],
-    ],
     'menu' => [
     // Para todos
 
