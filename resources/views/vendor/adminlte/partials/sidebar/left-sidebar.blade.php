@@ -24,4 +24,25 @@
         </nav>
     </div>
 
+    {{-- User Panel --}}
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img 
+                src="{{ 
+                    Auth::user()->id_Rol == 1 ? asset('images/administrador.png') : 
+                    (Auth::user()->id_Rol == 2 ? asset('images/veterinario.png') : 
+                    asset('images/usuario.png')) 
+                }}" 
+                class="img-circle elevation-2" 
+                alt="User Image"  style="background-color: rgb(252, 241, 241)";>
+        </div>
+        <div class="info">
+            <h5 class="d-block" style="color: white;">
+                        {{ Auth::user()->nombre_Usuario }} {{Auth::user()->apellido_Usuario}}
+            </h5>
+        </div>
+    </div>
+    
+
+
 </aside>
