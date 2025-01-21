@@ -315,7 +315,7 @@ return [
     // Menu Veterinario
     [
         'text'  => 'Mascotas',
-        'url'   => 'mascotas',
+        'url'   => 'verVetMascotas',
         'icon'  => 'fas fa-solid fa-paw',
         'can'   => 'manage-pets',
     ],
@@ -349,9 +349,8 @@ return [
     //Menu Usuario
     [
         'text'  => 'Mis mascotas',
-        'url'   => 'mypets',
+        'url'   => 'verMascotas',
         'icon'  => 'fas fa-solid fa-paw',
-        'can'   => 'see-pets',
     ],
     
 ],
