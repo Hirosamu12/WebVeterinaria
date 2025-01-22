@@ -10,13 +10,13 @@ class AdminController extends Controller
 {
     public function mostrarVerUsuarios(){
         $users = DB::table("usuario")->get();
-        return view("adminUsers",compact("users"));
+        return view("admin.adminUsers",compact("users"));
     }
 
     public function mostrarModificarUsuario($id_Usuario){
         $user = DB::table("usuario")->where('id_usuario', $id_Usuario)->first();
         //dd($user);
-        return view("modifyUsers", compact("user"));
+        return view("admin.modifyUsers", compact("user"));
     }
 
 
@@ -52,7 +52,7 @@ class AdminController extends Controller
     public function mostrarEliminarUsuario($id_Usuario){
         $user = DB::table("usuario")->where('id_usuario', $id_Usuario)->first();
         //dd($user);
-        return view("deleteUser", compact("user"));
+        return view("admin.deleteUser", compact("user"));
     }
 
     public function eliminarUsuario($id_Usuario){

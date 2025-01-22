@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('historial', function (Blueprint $table) {
             $table->id('id_Historial');
-            $table->timestamp('ultima_modificacion');
+            $table->timestamp('ultima_Modificacion');
             $table->date('fecha_Historial');
             $table->longText('observaciones_Historial');
             $table->foreignId('id_Mascota');

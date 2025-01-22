@@ -19,7 +19,7 @@
                         <th style="width: 13%">Fecha Nacimiento</th>
                         <th style="width: 13%">Género</th>
                         <th style="width: 13%">Raza</th>
-                        <th style="width: 7%;">Id Sangre</th>
+                        <th style="width: 7%;">Tipo Sangre</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,63 @@
                             <td>{{ $pet->fecha_Nacimiento }}</td>
                             <td>{{ $pet->genero }}</td>
                             <td>{{ $pet->raza_Mascota }}</td>
-                            <td>{{ $pet->id_Sangre_Mascota }}</td>
+                            <td>
+                                @switch($pet->id_Sangre_Mascota)
+                                @case(1)
+                                    1.1+
+                                    @break
+                                @case(2)
+                                    1.1-
+                                    @break
+                                @case(3)
+                                    1.2+
+                                    @break
+                                @case(4)
+                                    1.2-
+                                    @break
+                                @case(5)
+                                    2+
+                                    @break
+                                @case(6)
+                                    2-
+                                    @break
+                                @case(7)
+                                    3+
+                                    @break
+                                @case(8)
+                                    3-
+                                    @break
+                                @case(9)
+                                    4+
+                                    @break
+                                @case(10)
+                                    4-
+                                    @break
+                                @case(11)
+                                    5+
+                                    @break
+                                @case(12)
+                                    5-
+                                    @break
+                                @case(13)
+                                    6+
+                                    @break
+                                @case(14)
+                                    6-
+                                    @break
+                                @case(15)
+                                    7+
+                                    @break
+                                @case(16)
+                                    7-
+                                    @break
+                                @case(17)
+                                    8+
+                                    @break
+                                @case(18)
+                                    8-
+                                    @break
+                            @endswitch</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -39,17 +95,4 @@
         </div>
     </div>
     
-
-    <script>
-        function mostrarBorrarUsuario(idUsuario) {
-            alert("Modificar usuario con ID: " + idUsuario);
-    
-            // Ejemplo: redirigir a otra página
-            // window.location.href = "/modificar-usuario/" + idUsuario;
-    
-            // O abrir un modal
-            // $('#modalModificarUsuario').modal('show');
-            // $('#modalModificarUsuario input[name="id"]').val(idUsuario);
-        }
-    </script>
 @endsection

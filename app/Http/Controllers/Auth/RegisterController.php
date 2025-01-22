@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,7 +81,7 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-
+        $usuariosCount = DB::table('usuario')->count();
         $incomingfields = $request->validate([
             'nombre_Usuario' => 'required',
             'apellido_Usuario' => 'required',
@@ -90,7 +91,7 @@ class RegisterController extends Controller
             'email' => ['required', 'email', Rule::unique('usuario', 'email')],
             'password' => ['required','min:8','max:200'],
         ]);
-        $incomingfields['id_Rol'] = 3;
+        $incomingfields['id_Rol'] = $usuariosCount === 0 ? 1 : 3;
         $incomingfields['estado'] = "activo";
         $incomingfields['password'] = bcrypt($incomingfields['password']);
         $user = User::create($incomingfields);

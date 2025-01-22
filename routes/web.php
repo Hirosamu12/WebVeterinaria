@@ -43,6 +43,8 @@ Route::get('/verMascotas', [UserController::class,'mostrarVerMascotas'])->name('
 
 
 // Rutas de veterinario
+
+// Mascotas
 Route::get('/verVetMascotas', [VetController::class,'mostrarVerMascotasVet'])->name('seePetsVet');
 
 Route::get('/modificarMascota/{id_Mascota}', [VetController::class, 'mostrarModificarMascota'])->name('modifyPets');
@@ -56,3 +58,29 @@ Route::delete('/deleteMascota/{id_Mascota}', [VetController::class, 'eliminarMas
 Route::get('/agregarMascota', [VetController::class, 'mostrarAgregarMascota'])->name('addPets');
 
 Route::post('/addMascota', [VetController::class, 'agregarMascota'])->name('addPet');
+
+// Donaciones
+Route::get('/donaciones', [VetController::class, 'mostrarDonaciones'])->name('seeDonations');
+
+Route::get('/addDonation', [VetController::class,'mostrarAgregarDonacion'])->name('addDonation');
+
+Route::post('/confirmAddDonation', [VetController::class,'agregarDonacion'])->name('addDonations');
+
+Route::get('/modificarDonacion/{id_Donacion}', [VetController::class,'mostrarModificarDonacion'])->name('seeModifyDonation');
+
+Route::post('/confirmModifyDonation/{id_Donacion}', [VetController::class,'ModificarDonacion'])->name('modifyDonations');
+
+Route::get('/historial', [VetController::class, 'mostrarHistorial'])->name('seeHistorial');
+
+Route::get('/addHistorial', [VetController::class,'mostrarAgregarHistorial'])->name('addHistorial');
+
+Route::post('/confirmAddHistorial', [VetController::class,'agregarHistorial'])->name('addHistorials');
+
+Route::get('/modificarHistorial/{id_Historial}', [VetController::class,'mostrarModificarHistorial'])->name('seeModifyHistorial');
+
+Route::post('/confirmModifyHistorial/{id_Donacion}', [VetController::class,'ModificarHistorial'])->name('modifyHistorial');
+
+
+// Usuarios
+Route::get('/verVetUsuarios', [VetController::class,'mostrarVerUsuariosVet'])->name('seeUsersVet');
+

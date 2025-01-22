@@ -327,7 +327,7 @@ return [
     ],
     [
         'text'  => 'Propietarios',
-        'url'   => 'propietarios',
+        'url'   => 'verVetUsuarios',
         'can'   => 'manage-pets',
         'icon'  => 'fas fa-solid fa-user',
     ],
