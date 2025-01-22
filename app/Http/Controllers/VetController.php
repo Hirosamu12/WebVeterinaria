@@ -25,32 +25,54 @@ class VetController extends Controller
     }
 
 
-    public function modificarMascota(Request $request, $id_Mascota){
-        $validatedData = $request->validate([
-            'nombre_Mascota' => 'required|string|max:255',
-            'foto_Mascota' => 'required',
-            'fecha_Nacimiento' => 'required|date',
-            'genero' => 'required|string|in:Macho,Hembra', // To limit valid values
-            'raza_Mascota' => 'required|string|max:255',
-            'id_Sangre_Mascota' => 'required|integer',
-            'id_Usuario' => 'required|integer|exists:usuario,id_Usuario', // Check if user exists
-        ]);
-        // Actualizar los datos del usuario
-        DB::table('mascota')
-            ->where('id_Mascota', $id_Mascota)
-            ->update([
+    public function modificarMascota(Request $request, $id_Mascota)
+    {
+        try {
+            $validatedData = $request->validate([
+                'nombre_Mascota' => 'required|string|max:255',
+                'fecha_Nacimiento' => 'required|date',
+                'genero' => 'required|string|in:Macho,Hembra', // To limit valid values
+                'raza_Mascota' => 'required|string|max:255',
+                'id_Sangre_Mascota' => 'required|integer',
+                'id_Usuario' => 'required|integer|exists:usuario,id_Usuario', // Check if user exists
+            ]);
+
+            // Process the uploaded file if provided
+            if ($request->hasFile('foto_Mascota') && $request->file('foto_Mascota')->isValid()) {
+                $filePath = $request->file('foto_Mascota')->store('uploads/pets', 'public'); // Save to storage/app/public/uploads/pets
+                $validatedData['foto_Mascota'] = $filePath; // Add the path to validated data
+            }
+
+            // Build the update array dynamically
+            $updateData = [
                 'nombre_Mascota' => $validatedData['nombre_Mascota'],
-                'foto_Mascota' => $validatedData['foto_Mascota'],
                 'fecha_Nacimiento' => $validatedData['fecha_Nacimiento'],
                 'genero' => $validatedData['genero'],
                 'raza_Mascota' => $validatedData['raza_Mascota'],
                 'id_Sangre_Mascota' => $validatedData['id_Sangre_Mascota'],
                 'id_Usuario' => $validatedData['id_Usuario'],
-            ]);
+            ];
 
-        // Redireccionar con mensaje de éxito
-        return redirect()->route('seePetsVet');
+            // Include foto_Mascota only if it's set
+            if (isset($validatedData['foto_Mascota'])) {
+                $updateData['foto_Mascota'] = $validatedData['foto_Mascota'];
+            }
+
+            // Update the database record
+            DB::table('mascota')
+                ->where('id_Mascota', $id_Mascota)
+                ->update($updateData);
+
+            // Redirect with success message
+            return redirect()->route('seePetsVet')->with('success', 'Mascota actualizada correctamente.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput();
+        }
     }
+
 
 
     public function mostrarEliminarMascota($id_Mascota){
@@ -71,22 +93,36 @@ class VetController extends Controller
     public function agregarMascota(Request $request)
     {
         try {
+            // Validar datos del formulario
             $validatedData = $request->validate([
                 'nombre_Mascota' => 'required|string|max:255',
-                'foto_Mascota' => 'required|string|max:255',
-                'fecha_Nacimiento' => 'required|date',  
+                'foto_Mascota' => 'required|file|image|mimes:jpg,png,jpeg|max:2048', // Validación para archivos e imágenes
+                'fecha_Nacimiento' => 'required|date',
                 'genero' => 'required|string|in:Macho,Hembra',
                 'raza_Mascota' => 'required|string|max:255',
                 'id_Sangre_Mascota' => 'required|integer',
                 'id_Usuario' => 'required|integer|exists:usuario,id_Usuario',
             ]);
     
+            // Procesar el archivo subido
+            if ($request->hasFile('foto_Mascota') && $request->file('foto_Mascota')->isValid()) {
+                $filePath = $request->file('foto_Mascota')->store('uploads/pets', 'public'); // Guardar en storage/app/public/uploads/pets
+                $validatedData['foto_Mascota'] = $filePath; // Agregar la ruta al array validado
+            }
+    
+            // Crear registro en la base de datos
             Mascota::create($validatedData);
     
             return redirect()->route('seePetsVet')->with('success', 'Mascota agregada correctamente.');
         } catch (\Illuminate\Validation\ValidationException $e) {
+            // Manejar errores de validación
             return redirect()->back()
                 ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Exception $e) {
+            // Manejar cualquier otro error
+            return redirect()->back()
+                ->with('error', 'Ocurrió un error inesperado. Por favor, intenta de nuevo.')
                 ->withInput();
         }
     }

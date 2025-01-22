@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-        <form action="{{ route('modificarMascota', $pet->id_Mascota) }}" method="post">
+        <form action="{{ route('modificarMascota', $pet->id_Mascota) }}" method="post" enctype="multipart/form-data">
 
         @csrf
         <label for="nombre">Nombre</label><br>
         <input type="text" id="nombre" name="nombre_Mascota" value="{{ $pet->nombre_Mascota }}"><br>
-        <label for="cedula">Foto</label><br>
-        <input type="text" id="foto_Mascota" name="foto_Mascota" value="{{ $pet->foto_Mascota }}"><br>
+        <label for="foto_Mascota">Foto</label><br>
+        <input type="file" id="foto_Mascota" name="foto_Mascota" accept="image/*"><br>
         <label for="fecha_Nacimiento">Fecha Nacimiento</label><br>
         <input type="date" id="fecha_Nacimiento" name="fecha_Nacimiento" value="{{ $pet->fecha_Nacimiento }}"><br>
         <label for="genero">Género</label><br>

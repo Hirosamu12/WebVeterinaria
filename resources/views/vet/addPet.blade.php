@@ -14,13 +14,13 @@
             </ul>
         </div>
     @endif
-        <form action="{{ route('addPet') }}" method="post">
+        <form action="{{ route('addPet') }}" method="post" enctype="multipart/form-data">
 
         @csrf
         <label for="nombre">Nombre</label><br>
         <input type="text" id="nombre" name="nombre_Mascota"><br>
         <label for="cedula">Foto</label><br>
-        <input type="text" id="foto_Mascota" name="foto_Mascota"><br>
+        <input type="file" id="foto_Mascota" name="foto_Mascota" accept="image/*"><br>
         <label for="fecha_Nacimiento">Fecha Nacimiento</label><br>
         <input type="date" id="fecha_Nacimiento" name="fecha_Nacimiento"><br>
         <label for="genero">Género</label><br>
