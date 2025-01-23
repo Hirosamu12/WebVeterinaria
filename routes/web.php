@@ -80,6 +80,10 @@ Route::get('/modificarHistorial/{id_Historial}', [VetController::class,'mostrarM
 
 Route::post('/confirmModifyHistorial/{id_Donacion}', [VetController::class,'ModificarHistorial'])->name('modifyHistorial');
 
+Route::get('/donantes', [VetController::class,'mostrarDonantes'])->name('seeDonants');
+
+Route::post('/buscarDonantes', [VetController::class,'buscarDonantes'])->name('searchDonant');
+
 
 // Usuarios
 Route::get('/verVetUsuarios', [VetController::class,'mostrarVerUsuariosVet'])->name('seeUsersVet');

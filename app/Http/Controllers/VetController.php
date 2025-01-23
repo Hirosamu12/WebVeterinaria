@@ -267,5 +267,159 @@ class VetController extends Controller
         }
     }
 
+    public function mostrarDonantes(){
+        $donantes = DB::table('mascota')->get();
+        return view('vet.donantes', compact('donantes'));
+    }
 
+    public function buscarDonantes(Request $request){
+        $id_Sangre = $request->id_Sangre_Mascota;
+        switch ($id_Sangre) {
+            case($id_Sangre == 1):
+                $ids_Sangre =[1, 2];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+
+            case($id_Sangre == 2):
+                $ids_Sangre =[2];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+            
+            case($id_Sangre == 3):
+                $ids_Sangre =[3, 4];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+
+            case($id_Sangre == 4):
+                $ids_Sangre =[4];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+                
+            case($id_Sangre == 5):
+                $ids_Sangre =[5, 6];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+            
+            case($id_Sangre == 6):
+                $ids_Sangre =[6];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+            
+            case($id_Sangre == 7):
+                $ids_Sangre =[7,8];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+
+            case($id_Sangre == 8):
+                $ids_Sangre =[8];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+
+            case($id_Sangre == 9):
+                $ids_Sangre =[9, 10];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+
+            case($id_Sangre == 10):
+                $ids_Sangre =[10];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+    
+            case($id_Sangre == 11):
+                $ids_Sangre =[11, 12];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+                
+            case($id_Sangre == 12):
+                $ids_Sangre =[12];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+    
+            case($id_Sangre == 13):
+                $ids_Sangre =[13, 14];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+                    
+            case($id_Sangre == 14):
+                $ids_Sangre =[14];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+                
+            case($id_Sangre == 15):
+                $ids_Sangre =[15, 16];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+                
+            case($id_Sangre == 16):
+                $ids_Sangre =[16];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+    
+            case($id_Sangre == 17):
+                $ids_Sangre =[17, 18];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+    
+            case($id_Sangre == 18):
+                $ids_Sangre =[18];
+                // Buscar donantes con los tipos de sangre que coincidan
+                $donantes = DB::table('mascota')
+                                ->whereIn('id_Sangre_Mascota', $ids_Sangre)
+                                ->get();
+                break;
+        }
+        return view('vet.donantes', compact('donantes'));
+
+    }
 }
