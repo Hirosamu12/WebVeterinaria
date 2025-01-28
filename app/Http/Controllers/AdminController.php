@@ -63,4 +63,16 @@ class AdminController extends Controller
         return redirect()->route('seeUsers');
     }
 
+    public function buscarPersona(Request $request){
+        $search = $request->input('search');
+        $users = DB::table('usuario')
+        ->where('nombre_Usuario', 'like', "%{$search}%") // Buscar por nombre
+        ->orWhere('apellido_Usuario', 'like', "%{$search}%") // Buscar por apellido
+        ->orWhere('email', 'like', "%{$search}%") // Buscar por email
+        ->orWhere('telefono', 'like', "%{$search}%") // Buscar por teléfono (si existe)
+        ->orWhere('cedula', 'like', "%{$search}%") // Buscar por Cedula
+        ->get();
+        return view('admin.adminUsers', compact('users'));
+    }
+
 }
