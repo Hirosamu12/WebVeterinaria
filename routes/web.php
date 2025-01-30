@@ -38,7 +38,6 @@ Route::get('/eliminarUsuario/{id_Usuario}', [AdminController::class, 'mostrarEli
 Route::delete('/deleteUser/{id_usuario}', [AdminController::class, 'eliminarUsuario'])->name('deleteUser');
 
 
-
 // Rutas de Usuario
 Route::get('/verMascotas', [UserController::class,'mostrarVerMascotas'])->name('seePets');
 
@@ -85,9 +84,7 @@ Route::get('/donantes', [VetController::class,'mostrarDonantes'])->name('seeDona
 
 Route::post('/buscarDonantes', [VetController::class,'buscarDonantes'])->name('searchDonant');
 
-Route::post('/buscarPersona', [VetController::class,'buscarPersona'])->name('searchPeople');
 
 // Usuarios
 Route::get('/verVetUsuarios', [VetController::class,'mostrarVerUsuariosVet'])->name('seeUsersVet');
 
-Route::post('/buscarPersonaAdmin', [AdminController::class,'buscarPersona'])->name('searchPeopleAdmin');

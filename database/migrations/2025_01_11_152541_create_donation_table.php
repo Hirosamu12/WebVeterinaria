@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamp('ultima_Modificacion');
             $table->date('fecha_Donacion');
             $table->float('cantidad_Donacion');
-            $table->string('lugar_Donacion', 100);
+            $table->string('lugar_Donacion');
             $table->integer('estado_Donacion');
             $table->foreignId('id_Mascota_Receptor');
             $table->foreignId('id_Mascota_Donante');

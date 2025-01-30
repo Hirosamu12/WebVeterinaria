@@ -10,15 +10,6 @@
             <hr>
         </div>
         <div class="col-md-12">
-            <form action="{{ route('searchPeople') }}" method="post">
-                @csrf
-                <label for="search">Buscar persona: </label>
-                <input type="text" id="search" name="search"></input>
-                <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                    {{ __('Buscar Donantes') }}
-                </button>
-            </form>
-            <br>
             <table class="table table-bordered table-hover" id="propietario_tb">
                 <thead>
                     <tr>
