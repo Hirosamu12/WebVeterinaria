@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('veterinario', function (Blueprint $table) {
             $table->id('id_Veterinario');
-            $table->string('especialidad_veterinario');
+            $table->string('especialidad_veterinario', 60);
             $table->foreignId('id_Usuario');
         });
     }

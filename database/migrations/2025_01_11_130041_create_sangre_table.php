@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sangre', function (Blueprint $table) {
-            $table->id('id_Sangre');
-            $table->string('tipo_Sangre');
-            $table->string('factorRH');  
+            $table->integer('id_Sangre')->unsigned()->primary();
+            $table->string('tipo_Sangre', 10);
+            $table->string('factorRH', 10);  
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_sangre');
+        Schema::dropIfExists('sangre');
     }
 };
