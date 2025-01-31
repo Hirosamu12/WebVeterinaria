@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_Historial');
             $table->timestamp('ultima_Modificacion');
             $table->date('fecha_Historial');
-            $table->longText('observaciones_Historial');
+            $table->text('observaciones_Historial');
             $table->foreignId('id_Mascota');
         });
     }
