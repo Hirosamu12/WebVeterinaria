@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_Usuario');
             $table->string('nombre_Usuario', 50);
             $table->string('apellido_Usuario', 50);
-            $table->string('password', 50);
+            $table->string('password');
             $table->integer('cedula');
             $table->string('email', 50);
             $table->string('telefono', 50);
