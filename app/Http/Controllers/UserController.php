@@ -20,6 +20,7 @@ class UserController extends Controller
         // Pasar las mascotas a la vista
         return view('userMascotas', compact('pets'));
     }
+    
 
 
 }

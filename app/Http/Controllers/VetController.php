@@ -128,7 +128,8 @@ class VetController extends Controller
     }
 
     public function mostrarAgregarMascota(){
-        return view("vet.addPet");
+        $users = DB::table("usuario")->get();
+        return view("vet.addPet", compact('users'));
     }
 
 
@@ -140,9 +141,17 @@ class VetController extends Controller
 
 
     public function mostrarDonaciones(){
-        $donations = DB::table('donation')->get();
-        // Pasar las mascotas a la vista
+        $donations = DB::table('donation')
+        ->join('mascota as receptor', 'donation.id_Mascota_Receptor', '=', 'receptor.id_Mascota')
+        ->join('mascota as donante', 'donation.id_Mascota_Donante', '=', 'donante.id_Mascota')
+        ->select(
+            'donation.*',
+            'receptor.nombre_Mascota as nombre_Mascota_Receptor',
+            'donante.nombre_Mascota as nombre_Mascota_Donante'
+        )
+        ->get();
         return view('vet.donations', compact('donations'));
+        // Pasar las mascotas a la vista
     }
 
 
@@ -249,12 +258,14 @@ class VetController extends Controller
                 'observaciones_Historial' => 'required|string',
                 'id_Mascota' => 'required|integer|exists:mascota,id_Mascota',  // Ajustada regla exists
             ]);
-            // Actualizar los datos del usuario
+            // Actualizar los datos del historial
+            $historial = DB::table("historial")->where('id_Historial',$id_Historial)->first();
+            $newObervaciones = $historial->observaciones_Historial . " | " . $validatedData['observaciones_Historial'];
             DB::table('historial')
                 ->where('id_Historial', $id_Historial)
                 ->update([
                     'fecha_Historial' => $validatedData['fecha_Historial'],
-                    'observaciones_Historial' => $validatedData['observaciones_Historial'],
+                    'observaciones_Historial' => $newObervaciones,
                     'id_Mascota' => $validatedData['id_Mascota'],
                 ]);
     
@@ -422,4 +433,32 @@ class VetController extends Controller
         return view('vet.donantes', compact('donantes'));
 
     }
+    
+    public function buscarPersona(Request $request){
+        $search = $request->input('search');
+        $users = DB::table('usuario')
+        ->where('nombre_Usuario', 'like', "%{$search}%") // Buscar por nombre
+        ->orWhere('apellido_Usuario', 'like', "%{$search}%") // Buscar por apellido
+        ->orWhere('email', 'like', "%{$search}%") // Buscar por email
+        ->orWhere('telefono', 'like', "%{$search}%") // Buscar por teléfono (si existe)
+        ->orWhere('cedula', 'like', "%{$search}%") // Buscar por Cedula
+        ->get();
+        return view('vet.vetUsers', compact('users'));
+    }
+
+    public function buscarPersonaDonacion(Request $request)
+    {
+        $search = $request->input('search');
+        
+        $users = DB::table('usuario')
+            ->where('nombre_Usuario', 'like', "%{$search}%")
+            ->orWhere('apellido_Usuario', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%")
+            ->orWhere('telefono', 'like', "%{$search}%")
+            ->orWhere('cedula', 'like', "%{$search}%")
+            ->get();
+    
+        return view('vet.addPet', compact('users'));
+    }
+    
 }

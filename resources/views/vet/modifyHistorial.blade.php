@@ -10,7 +10,7 @@
             <label for="fecha_Historial">Fecha Historial</label><br>
             <input type="date" id="fecha_Historial" value="{{ $historial->fecha_Historial }}" name="fecha_Historial"><br>
             <label for="observaciones_Historial">observaciones Historial</label><br>
-            <input type="text" id="observaciones_Historial" value="{{ $historial->observaciones_Historial }}" name="observaciones_Historial"><br>
+            <input type="text" id="observaciones_Historial" name="observaciones_Historial"><br>
             <label for="id_Mascota">Id Mascota</label><br>
             <input type="number" id="id_Mascota" value="{{ $historial->id_Mascota }}" name="id_Mascota">
     

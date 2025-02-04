@@ -24,8 +24,8 @@
                         <th style="width: 13%">Cantidad Donación (ml)</th>
                         <th style="width: 13%">Lugar Donación</th>
                         <th style="width: 13%">Estado</th>
-                        <th style="width: 7%">Id Mascota Receptor</th>
-                        <th style="width: 7%">Id Mascota Donante</th>
+                        <th style="width: 7%">Id/Nombre Mascota Receptor</th>
+                        <th style="width: 7%">Id/Nombre Mascota Donante</th>
                         <th style="width: 9%">Operaciones</th>
                         
                     </tr>
@@ -47,8 +47,8 @@
                                         Anulado
                                         @break</td>
                                 @endswitch
-                            <td>{{ $donation->id_Mascota_Receptor }}</td>
-                            <td>{{ $donation->id_Mascota_Donante }}</td>        
+                            <td>{{ $donation->id_Mascota_Receptor }}<br>{{ $donation->nombre_Mascota_Receptor }}</td>
+                            <td>{{ $donation->id_Mascota_Donante }}<br>{{ $donation->nombre_Mascota_Donante }}</td>        
                             <td>
                                 <button class="btn btn-sm btn-warning" onclick="window.location.href='{{ route('seeModifyDonation', ['id_Donacion' => $donation->id_Donacion]) }}';">Modificar</button>
                             </td>                    

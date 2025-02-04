@@ -37,6 +37,7 @@ Route::get('/eliminarUsuario/{id_Usuario}', [AdminController::class, 'mostrarEli
 
 Route::delete('/deleteUser/{id_usuario}', [AdminController::class, 'eliminarUsuario'])->name('deleteUser');
 
+Route::post('/buscarPersonaAdmin', [AdminController::class,'buscarPersona'])->name('searchPeopleAdmin');
 
 // Rutas de Usuario
 Route::get('/verMascotas', [UserController::class,'mostrarVerMascotas'])->name('seePets');
@@ -70,6 +71,9 @@ Route::get('/modificarDonacion/{id_Donacion}', [VetController::class,'mostrarMod
 
 Route::post('/confirmModifyDonation/{id_Donacion}', [VetController::class,'ModificarDonacion'])->name('modifyDonations');
 
+Route::post('/buscarPersonaDonacion', [VetController::class,'buscarPersonaDonacion'])->name('searchPeopleDonation');
+
+
 Route::get('/historial', [VetController::class, 'mostrarHistorial'])->name('seeHistorial');
 
 Route::get('/addHistorial', [VetController::class,'mostrarAgregarHistorial'])->name('addHistorial');
@@ -84,6 +88,7 @@ Route::get('/donantes', [VetController::class,'mostrarDonantes'])->name('seeDona
 
 Route::post('/buscarDonantes', [VetController::class,'buscarDonantes'])->name('searchDonant');
 
+Route::post('/buscarPersona', [VetController::class,'buscarPersona'])->name('searchPeople');
 
 // Usuarios
 Route::get('/verVetUsuarios', [VetController::class,'mostrarVerUsuariosVet'])->name('seeUsersVet');
