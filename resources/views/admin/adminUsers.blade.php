@@ -15,7 +15,7 @@
                 <label for="search">Buscar persona: </label>
                 <input type="text" id="search" name="search"></input>
                 <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                    {{ __('Buscar Donantes') }}
+                    {{ __('Buscar') }}
                 </button>
             </form>
             <br>

@@ -27,7 +27,11 @@
                         <tr>
                             <td>{{ $pet->id_Mascota }}</td>
                             <td>{{ $pet->nombre_Mascota }}</td>
-                            <td>{{ $pet->foto_Mascota }}</td>
+                            <td>
+                                <a href="{{ asset('storage/' . $pet->foto_Mascota) }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $pet->foto_Mascota) }}" alt="Foto de {{ $pet->nombre_Mascota }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                </a>
+                            </td>
                             <td>{{ $pet->fecha_Nacimiento }}</td>
                             <td>{{ $pet->genero }}</td>
                             <td>{{ $pet->raza_Mascota }}</td>

@@ -51,8 +51,8 @@
             <option value=17>8+</option>
             <option value=18>8-</option>
         </select><br>
-        <label for="id_Usuario">Id Dueño</label><br>
-        <input type="number" id="id_Usuario" name="id_Usuario">
+        <label for="cedula">Numero de Cedula del Dueño</label><br>
+        <input type="number" id="cedula" name="cedula">
 
         <br><br>
         <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">

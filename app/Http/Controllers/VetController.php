@@ -93,6 +93,7 @@ class VetController extends Controller
     public function agregarMascota(Request $request)
     {
         try {
+
             // Validar datos del formulario
             $validatedData = $request->validate([
                 'nombre_Mascota' => 'required|string|max:255',
@@ -101,8 +102,10 @@ class VetController extends Controller
                 'genero' => 'required|string|in:Macho,Hembra',
                 'raza_Mascota' => 'required|string|max:255',
                 'id_Sangre_Mascota' => 'required|integer',
-                'id_Usuario' => 'required|integer|exists:usuario,id_Usuario',
+                'cedula' => 'required|integer|exists:usuario,cedula',
             ]);
+
+            $usuario = DB::table('usuario')->where('cedula', $validatedData['cedula'])->first();
     
             // Procesar el archivo subido
             if ($request->hasFile('foto_Mascota') && $request->file('foto_Mascota')->isValid()) {
@@ -111,7 +114,15 @@ class VetController extends Controller
             }
     
             // Crear registro en la base de datos
-            Mascota::create($validatedData);
+            Mascota::create([
+                'nombre_Mascota' => $validatedData['nombre_Mascota'],
+                'foto_Mascota' => $validatedData['foto_Mascota'], // Asegúrate de validar la imagen antes de guardar
+                'fecha_Nacimiento' => $validatedData['fecha_Nacimiento'],
+                'genero' => $validatedData['genero'],
+                'raza_Mascota' => $validatedData['raza_Mascota'],
+                'id_Sangre_Mascota' => $validatedData['id_Sangre_Mascota'],
+                'id_Usuario' => $usuario->id_Usuario,
+            ]);
     
             return redirect()->route('seePetsVet')->with('success', 'Mascota agregada correctamente.');
         } catch (\Illuminate\Validation\ValidationException $e) {
