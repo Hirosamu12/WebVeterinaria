@@ -10,12 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class VetController extends Controller
 {
-    public function mostrarVerMascotasVet(){
-        $pets = DB::table('mascota')->get();
-    
+    public function mostrarVerMascotasVet() {
+        $pets = DB::table('mascota')
+            ->join('usuario as dueño', 'mascota.id_Usuario', '=', 'dueño.id_Usuario')
+            ->select(
+                'mascota.*',
+                'dueño.nombre_Usuario as nombre_Usuario', 
+            )
+            ->get();
+        
         // Pasar las mascotas a la vista
         return view('vet.vetMascotas', compact('pets'));
     }
+    
 
 
     public function mostrarModificarMascota($id_Mascota){

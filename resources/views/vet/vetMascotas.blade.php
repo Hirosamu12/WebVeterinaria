@@ -102,7 +102,7 @@
                                 @endswitch
                             </td>
                             
-                            <td>{{ $pet->id_Usuario }}</td>
+                            <td>{{ $pet->id_Usuario }}, {{ $pet->nombre_Usuario }}</td>
                             <td>
                                 <button class="btn btn-sm btn-warning" onclick="window.location.href='{{ route('modifyPets', ['id_Mascota' => $pet->id_Mascota]) }}';">Modificar</button>
                                 <button class="btn btn-sm btn-danger" onclick="window.location.href='{{ route('deletePets', ['id_Mascota' => $pet->id_Mascota]) }}';">Borrar</button>
